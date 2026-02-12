@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+/* ── Design Tokens ─────────────────────────────────── */
+:root {
+  --color-cursed-black: #131313;
+  --color-nero: #262625;
+  --color-private-black: #4B4A48;
+  --color-steel-wool: #777674;
+  --color-rainy-grey: #A4A4A4;
+  --color-soft-cyan: #3BC9DB;
+
+  --background: #131313;
+  --foreground: #ededed;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-cursed-black: var(--color-cursed-black);
+  --color-nero: var(--color-nero);
+  --color-private-black: var(--color-private-black);
+  --color-steel-wool: var(--color-steel-wool);
+  --color-rainy-grey: var(--color-rainy-grey);
+  --color-soft-cyan: var(--color-soft-cyan);
+  --font-sans: var(--font-inter);
+}
+
+/* ── Global Reset & Base ───────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  background-color: #131313;
+  color-scheme: dark;
+}
+
+body {
+  background-color: #131313;
+  background-image:
+    radial-gradient(ellipse at 50% 0%, rgba(59, 201, 219, 0.015) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 100%, rgba(59, 201, 219, 0.01) 0%, transparent 50%),
+    linear-gradient(180deg, #141414 0%, #131313 30%, #111111 100%);
+  color: rgba(255, 255, 255, 0.6);
+  font-family: var(--font-inter, "Inter", system-ui, -apple-system, sans-serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ── Custom Scrollbar ──────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #131313;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4B4A48;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #777674;
+}
+
+/* ── Selection ─────────────────────────────────────── */
+::selection {
+  background-color: rgba(59, 201, 219, 0.25);
+  color: white;
+}
+
+/* ── Typography Utilities ──────────────────────────── */
+.text-headline {
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: -0.025em;
+  font-weight: 600;
+}
+
+.text-body {
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.7;
+}
+
+.text-muted {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* ── Glassmorphism Card ────────────────────────────── */
+.glass-card {
+  background: rgba(38, 38, 37, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(75, 74, 72, 0.3);
+  border-radius: 16px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(59, 201, 219, 0.2);
+  box-shadow: 0 0 30px rgba(59, 201, 219, 0.05);
+  transform: translateY(-2px);
+}
+
+/* ── Subtle Glow ───────────────────────────────────── */
+.cyan-glow {
+  box-shadow: 0 0 20px rgba(59, 201, 219, 0.1),
+    0 0 60px rgba(59, 201, 219, 0.05);
+}
+
+/* ── Gradient Divider ──────────────────────────────── */
+.gradient-border {
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(75, 74, 72, 0.4) 20%,
+      rgba(75, 74, 72, 0.4) 80%,
+      transparent 100%);
+  height: 1px;
+}
