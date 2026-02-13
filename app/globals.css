@@ -2,14 +2,14 @@
 
 /* ── Design Tokens ─────────────────────────────────── */
 :root {
-  --color-cursed-black: #131313;
-  --color-nero: #262625;
-  --color-private-black: #4B4A48;
-  --color-steel-wool: #777674;
-  --color-rainy-grey: #A4A4A4;
+  --color-cursed-black: #050505;
+  --color-nero: #1a1a1a;
+  --color-private-black: #333333;
+  --color-steel-wool: #666666;
+  --color-rainy-grey: #888888;
   --color-soft-cyan: #3BC9DB;
 
-  --background: #131313;
+  --background: #050505;
   --foreground: #ededed;
 }
 
@@ -22,28 +22,37 @@
   --color-steel-wool: var(--color-steel-wool);
   --color-rainy-grey: var(--color-rainy-grey);
   --color-soft-cyan: var(--color-soft-cyan);
-  --font-sans: var(--font-inter);
+  --font-sans: var(--font-hahmlet), serif;
+  --font-display: var(--font-hahmlet), serif;
 }
 
 /* ── Global Reset & Base ───────────────────────────── */
 html {
   scroll-behavior: smooth;
-  background-color: #131313;
+  background-color: #050505;
   color-scheme: dark;
 }
 
 body {
-  background-color: #131313;
+  background-color: #050505;
   background-image:
-    radial-gradient(ellipse at 50% 0%, rgba(59, 201, 219, 0.015) 0%, transparent 60%),
-    radial-gradient(ellipse at 50% 100%, rgba(59, 201, 219, 0.01) 0%, transparent 50%),
-    linear-gradient(180deg, #141414 0%, #131313 30%, #111111 100%);
+    radial-gradient(ellipse at 50% 0%, rgba(59, 201, 219, 0.02) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 100%, rgba(59, 201, 219, 0.015) 0%, transparent 50%),
+    linear-gradient(180deg, #080808 0%, #050505 30%, #030303 100%);
   color: rgba(255, 255, 255, 0.6);
-  font-family: var(--font-inter, "Inter", system-ui, -apple-system, sans-serif);
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+}
+
 
 /* ── Custom Scrollbar ──────────────────────────────── */
 ::-webkit-scrollbar {
@@ -51,7 +60,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #131313;
+  background: #050505;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -99,6 +108,13 @@ body {
   border-color: rgba(59, 201, 219, 0.2);
   box-shadow: 0 0 30px rgba(59, 201, 219, 0.05);
   transform: translateY(-2px);
+}
+
+/* Disable hover lift on touch devices (prevents tap-to-hover stickiness) */
+@media (hover: none) {
+  .glass-card:hover {
+    transform: none;
+  }
 }
 
 /* ── Subtle Glow ───────────────────────────────────── */

@@ -62,24 +62,24 @@ const SOCIALS = [
 
 export default function Footer() {
     return (
-        <footer id="footer" className="bg-[#131313] pt-20 pb-10">
+        <footer id="footer" className="bg-[#131313] pt-12 sm:pt-16 md:pt-20 pb-8 sm:pb-10">
             {/* Top divider */}
-            <div className="gradient-border w-full mb-16" />
+            <div className="gradient-border w-full mb-10 sm:mb-12 md:mb-16" />
 
-            <div className="max-w-7xl mx-auto px-6 md:px-10">
-                <div className="grid grid-cols-2 md:grid-cols-6 gap-10 md:gap-8 mb-16">
+            <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-10">
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-6 gap-8 sm:gap-10 md:gap-8 mb-10 sm:mb-12 md:mb-16">
                     {/* Brand column */}
                     <div className="col-span-2">
                         <Link
                             href="#hero"
-                            className="inline-flex items-center gap-2 text-white/90 font-semibold text-lg tracking-tight mb-5"
+                            className="inline-flex items-center text-white/90 font-semibold text-lg tracking-tight mb-5"
                         >
                             <img
-                                src="/media/swj-logo.png"
+                                src="/media/swj-logo-3.png"
                                 alt="Writer's Lair"
-                                className="w-7 h-7 object-contain"
+                                className="w-10 h-10 sm:w-14 sm:h-14 object-contain -ml-2 -mr-1"
                             />
-                            Writer&apos;s Lair
+                            <span className="relative -top-[1px]">Writer&apos;s Lair</span>
                         </Link>
                         <div className="flex items-center gap-4 mt-5">
                             {SOCIALS.map((social) => (
@@ -118,8 +118,8 @@ export default function Footer() {
                 </div>
 
                 {/* Bottom bar */}
-                <div className="gradient-border w-full mb-8" />
-                <p className="text-xs text-white/30 tracking-wide">
+                <div className="gradient-border w-full mb-6 sm:mb-8" />
+                <p className="text-[10px] sm:text-xs text-white/30 tracking-wide">
                     © {new Date().getFullYear()} Writer&apos;s Lair. All rights reserved.
                 </p>
             </div>

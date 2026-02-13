@@ -38,14 +38,14 @@ export default function Navbar() {
                 {/* Logo */}
                 <a
                     href="#hero"
-                    className="text-white/90 font-semibold text-lg tracking-tight flex items-center gap-2"
+                    className="text-white/90 font-semibold text-lg tracking-tight flex items-center"
                 >
                     <img
-                        src="/media/swj-logo.png"
+                        src="/media/swj-logo-3.png"
                         alt="Writer's Lair"
-                        className="w-7 h-7 sm:w-8 sm:h-8 object-contain"
+                        className="w-10 h-10 sm:w-14 sm:h-14 object-contain -ml-2 -mr-1"
                     />
-                    Writer&apos;s Lair
+                    <span className="relative -top-[1px]">Writer&apos;s Lair</span>
                 </a>
 
                 {/* Desktop Links */}

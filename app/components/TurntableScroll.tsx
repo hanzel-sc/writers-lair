@@ -4,7 +4,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useSharedAudio } from "./AudioProvider";
 
-const TOTAL_FRAMES = 240;
+const TOTAL_FRAMES = 956;
 
 /* ── Narrative overlay sections ────────────────────────── */
 interface NarrativePhase {
@@ -94,7 +94,7 @@ export default function TurntableScroll() {
                 const img = new Image();
                 img.decoding = "async";
                 const padded = String(i + 1).padStart(3, "0");
-                img.src = `/turntable-sequence-png/ezgif-frame-${padded}.png`;
+                img.src = `/turntable-sequence-pngs/ezgif-frame-${padded}.png`;
 
                 img.onload = () => {
                     if (cancelled) return;
@@ -187,11 +187,16 @@ export default function TurntableScroll() {
         []
     );
 
-    /* ── Handle resize ──────────────────────────────────── */
+    /* ── Handle resize + orientation change ──────────────── */
     useEffect(() => {
         const handleResize = () => drawFrame(currentFrameRef.current);
+        const handleOrientation = () => setTimeout(handleResize, 150);
         window.addEventListener("resize", handleResize, { passive: true });
-        return () => window.removeEventListener("resize", handleResize);
+        window.addEventListener("orientationchange", handleOrientation);
+        return () => {
+            window.removeEventListener("resize", handleResize);
+            window.removeEventListener("orientationchange", handleOrientation);
+        };
     }, [drawFrame]);
 
     /* ── Hide audio prompt once playing ────────────────── */
@@ -286,18 +291,19 @@ export default function TurntableScroll() {
     const getPositionClasses = (position: string) => {
         switch (position) {
             case "left":
-                return "items-start text-left pl-6 md:pl-20 lg:pl-32";
+                /* Center on mobile, left-align from md up */
+                return "items-center text-center md:items-start md:text-left md:pl-20 lg:pl-32";
             case "right":
-                return "items-end text-right pr-6 md:pr-20 lg:pr-32";
+                return "items-center text-center md:items-end md:text-right md:pr-20 lg:pr-32";
             default:
                 return "items-center text-center";
         }
     };
 
     return (
-        <section ref={containerRef} className="relative h-[500vh]" id="hero">
+        <section ref={containerRef} className="relative h-[350vh] sm:h-[400vh] md:h-[500vh]" id="hero">
             {/* Sticky viewport */}
-            <div className="sticky top-0 h-screen w-full overflow-hidden bg-[#131313]">
+            <div className="sticky top-0 h-[100dvh] w-full overflow-hidden bg-[#131313]">
                 {/* Loading spinner */}
                 {isLoading && (
                     <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-[#131313]">
@@ -349,21 +355,21 @@ export default function TurntableScroll() {
                     <motion.div
                         key={idx}
                         style={{ opacity: opacities[idx] }}
-                        className={`absolute inset-0 flex flex-col justify-center pointer-events-none px-4 sm:px-6 z-10 ${getPositionClasses(
+                        className={`absolute inset-0 flex flex-col justify-center pointer-events-none px-5 sm:px-6 md:px-8 z-10 ${getPositionClasses(
                             phase.position
                         )}`}
                     >
-                        <h2 className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-semibold tracking-tight text-white/90 mb-3 sm:mb-4 leading-tight drop-shadow-[0_2px_16px_rgba(0,0,0,0.7)]">
+                        <h2 className="text-[1.6rem] leading-[1.2] sm:text-4xl md:text-5xl lg:text-7xl font-semibold tracking-tight text-white/90 mb-2 sm:mb-3 md:mb-4 drop-shadow-[0_2px_16px_rgba(0,0,0,0.8)]">
                             {phase.headline}
                         </h2>
-                        <p className="text-sm sm:text-lg md:text-xl lg:text-2xl text-white/60 max-w-[280px] sm:max-w-md leading-relaxed drop-shadow-[0_1px_10px_rgba(0,0,0,0.6)]">
+                        <p className="text-[0.85rem] leading-relaxed sm:text-base md:text-xl lg:text-2xl text-white/55 max-w-[260px] sm:max-w-sm md:max-w-md drop-shadow-[0_1px_10px_rgba(0,0,0,0.6)]">
                             {phase.subtext}
                         </p>
                         {phase.showCTA && (
                             <motion.a
                                 href="#about"
                                 style={{ opacity: ctaOpacity }}
-                                className="pointer-events-auto mt-6 sm:mt-8 inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 bg-[#131313]/60 border border-[#3BC9DB]/30 rounded-full text-[#3BC9DB] text-xs sm:text-sm font-medium tracking-wide uppercase hover:bg-[#3BC9DB]/20 hover:border-[#3BC9DB]/50 transition-all duration-500 self-center backdrop-blur-sm"
+                                className="pointer-events-auto mt-5 sm:mt-6 md:mt-8 inline-flex items-center gap-2 px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-3.5 bg-[#131313]/60 border border-[#3BC9DB]/30 rounded-full text-[#3BC9DB] text-[11px] sm:text-xs md:text-sm font-medium tracking-wide uppercase hover:bg-[#3BC9DB]/20 hover:border-[#3BC9DB]/50 transition-all duration-500 self-center backdrop-blur-sm"
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
                             >
