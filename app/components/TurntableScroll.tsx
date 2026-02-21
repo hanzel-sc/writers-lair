@@ -1,3 +1,4 @@
+//TurntableScroll.tsx
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
@@ -94,7 +95,7 @@ export default function TurntableScroll() {
                 const img = new Image();
                 img.decoding = "async";
                 const padded = String(i + 1).padStart(3, "0");
-                img.src = `/turntable-sequence-pngs/ezgif-frame-${padded}.png`;
+                img.src = `/turntable-sequence-webp/ezgif-frame-${padded}.webp`;
 
                 img.onload = () => {
                     if (cancelled) return;
